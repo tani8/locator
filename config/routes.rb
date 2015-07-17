@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/locator' => 'locator#show'
   # created to send chase API data to solve cross-domain ajax request issue
   get '/chaseparty' => 'locator#chaseparty'
+  # get '/index' => 'locator#index'
+
 end

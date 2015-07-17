@@ -3,6 +3,8 @@ $(document).on('page:change', function(){
   // then calls initialize to set up a map with associated markers
   currentLocation();
 
+  $('form').on('submit', inputAddress);
+
 });
 
 function currentLocation(){
@@ -33,7 +35,7 @@ function initialize(location) {
     // center of map
     center: mylatLong,
     // how far in you want to zoom when new map generates
-    zoom: 10
+    zoom: 12
   };
 
   // sets the map after getting the div area to know where to place it
@@ -48,6 +50,27 @@ function initialize(location) {
     position: mylatLong,
     map: map,
     title: "First location"
+  });
+
+}
+
+function inputAddress(){
+  event.preventDefault();
+
+  var response = $.ajax({
+    url: '/',
+    type: 'get',
+    data: $(this).serialize(),
+    dataType: 'json',
+  });
+
+  response.done(function(data){
+    console.log(data)
+    initialize(data);
+  });
+
+  response.fail(function(data){
+    console.log("you don't belong here");
   });
 
 }

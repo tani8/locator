@@ -18,7 +18,7 @@ class LocatorController < ApplicationController
       @address = nil;
 
       # sends lon and lat as json to use in chase API
-      render json: {lati: @lat, lngi: @lon}
+      render json: {lat: @lat, lng: @lon}
     end
   end
 
