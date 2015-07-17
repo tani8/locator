@@ -1,21 +1,82 @@
-<h1> JP Morgan Chase ATM/Branch Locator </h2>
+<!-- if i had more time, i'd use foundation to make the page responsive, add the chase logo, and proper formatting with a border around the details with varying header sizes for clear readability -->
+<h1> JP Morgan Chase ATM/Branch Locator </h1>
 
   <!-- form used to take user input in the form of an address to obtain lng/lat -->
-<div class = "find">
-  Find a Location:
-  <form>
-    <input type="text" id="search" name="address">
-    <input type="submit" value="Search">
-  </form>
-  <br>
-  <br>
-</div>
+  <div class = "find">
+    Find a Location:
+    <form>
+      <!-- stores user input as address -->
+      <input type="text" id="search" name="address">
+      <input type="submit" value="Search">
+    </form>
+    <br>
+    <br>
+  </div>
 
-<div id="map-canvas"></div>
-<div id="location-details"></div>
-    <%# form_for @address do |f| %>
-      <%# f.text_field :address %>
-      <!-- <br> -->
-      <%# f.submit 'Find' %>
-    <%# end %>
+  <!-- div of where to display map on the page -->
+  <div id="map-canvas"></div>
+
+  <!-- using handlebars.js templating to easily display javascript object data in html-->
+  <script id="marker-details" type="text/x-handlebars-template">
+    <h3>{{label}} - {{type}} {{locType}} </h5>
+    {{address}} ( {{distance}} mi. )
+    <br>
+    <p>
+    {{city}}, {{state}} - {{zipcode}}
+    <br>
+
+    <br>
+    <!-- // checks if there are multiple atms for users -->
+    {{#if atms}}
+      ATMs: {{atms}}
+      <br>
+    {{/if}}
+
+  <!-- // checks if services array has data, then outputs -->
+    {{#if services.length}}
+      Services:
+      {{#each services}}
+        {{this}},
+      {{/each}}
+    {{/if}}
+    <br>
+
+    <!-- // checks if lobby hours data is available, then outputs -->
+    <!-- // if i had more time i would like to output the days of the week corresponding to the hours -->
+    {{#if lobbyHrs.length}}
+      Lobby Hours:
+      {{#each lobbyHrs}}
+        {{this}},
+      {{/each}}
+    {{else}}
+      Lobby Hours: N/A
+    {{/if}}
+    <br>
+
+    <!-- // checks if drive up hours data is available, then outputs -->
+    {{#if driveUpHrs.length}}
+      Drive-Up Hours:
+      {{#each driveUpHrs}}
+        <!--  // outputs each drive up hour by day -->
+        {{this}},
+      {{/each}}
+    {{else}}
+    <!-- // if there's no data for drive up hours -->
+      Drive-Up Hours: N/A
+    {{/if}}
+      <br>
+
+    <!-- //checks if phone number data is available, then outputs -->
+    {{#if phone}}
+      Phone: {{phone}}
+    {{/if}}
+    <br>
+
+    </p>
+  </script>
+  <!-- div to display chase branch/atm details -->
+  <!-- manipulating DOM elements instead of creating a new route page for each location -->
+  <div id="location-details"></div>
+
+
 

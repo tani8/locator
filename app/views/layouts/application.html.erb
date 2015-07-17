@@ -5,10 +5,12 @@
   <style type="text/css">
     html, body, #map-canvas { height: 90%; margin: 2%; padding: 0;}
   </style>
-
+  <!-- needed to ping google maps api -->
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZvWU2hQSZTqblvvcJl-UQK7KTO5dv3A8">
   </script>
+  <!-- needed for handlebars templating-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
