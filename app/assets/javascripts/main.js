@@ -3,6 +3,7 @@ $(document).on('page:change', function(){
   // then calls initialize to set up a map with associated markers
   currentLocation();
   // executes input address method on submit click event
+
   $('form').on('submit', inputAddress);
 
 });
@@ -114,6 +115,8 @@ function chaseMarkers(lati, longi, map){
       });
       // adds lsitener on each marker so when clicked, executes chaseDetails function on event
       google.maps.event.addListener(marker, "click", function(e){
+        // shows border around details on detail page when marker is clicked
+        $('#location-details').show();
         // sets the string to be displayed on click
         name.setContent(this.address);
         // displays marker info on map when clicked

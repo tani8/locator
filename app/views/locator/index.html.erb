@@ -3,14 +3,12 @@
 
   <!-- form used to take user input in the form of an address to obtain lng/lat -->
   <div class = "find">
-    Find a Location:
     <form>
+      Find Nearby Locations:
       <!-- stores user input as address -->
       <input type="text" id="search" name="address">
       <input type="submit" value="Search">
     </form>
-    <br>
-    <br>
   </div>
 
   <!-- div of where to display map on the page -->
@@ -18,62 +16,59 @@
 
   <!-- using handlebars.js templating to easily display javascript object data in html-->
   <script id="marker-details" type="text/x-handlebars-template">
-    <h3>{{label}} - {{type}} {{locType}} </h5>
-    {{address}} ( {{distance}} mi. )
-    <br>
-    <p>
-    {{city}}, {{state}} - {{zipcode}}
-    <br>
+    <h3>{{label}} - {{type}} {{locType}} ( {{distance}} mi. ) </h5>
+    <p> {{address}}, {{city}}, {{state}} - {{zipcode}} </p>
 
-    <br>
     <!-- // checks if there are multiple atms for users -->
-    {{#if atms}}
-      ATMs: {{atms}}
-      <br>
-    {{/if}}
+    <p>
+      {{#if atms}}
+        ATMs: {{atms}}
+      {{/if}}
+    </p>
 
-  <!-- // checks if services array has data, then outputs -->
+    <!-- // checks if services array has data, then outputs -->
     {{#if services.length}}
       Services:
       {{#each services}}
         {{this}},
       {{/each}}
     {{/if}}
-    <br>
 
     <!-- // checks if lobby hours data is available, then outputs -->
     <!-- // if i had more time i would like to output the days of the week corresponding to the hours -->
-    {{#if lobbyHrs.length}}
-      Lobby Hours:
-      {{#each lobbyHrs}}
-        {{this}},
-      {{/each}}
-    {{else}}
-      Lobby Hours: N/A
-    {{/if}}
-    <br>
+    <p>
+      {{#if lobbyHrs.length}}
+        Lobby Hours:
+        {{#each lobbyHrs}}
+          {{this}},
+        {{/each}}
+      {{else}}
+        Lobby Hours: N/A
+      {{/if}}
+    </p>
 
     <!-- // checks if drive up hours data is available, then outputs -->
     <!-- // i'd like to fix this so that even though the driveUpHrs array has empty elements, it should output N/A -->
-    {{#if driveUpHrs.length}}
-      Drive-Up Hours:
-      {{#each driveUpHrs}}
-        <!--  // outputs each drive up hour by day -->
-        {{this}},
-      {{/each}}
-    {{else}}
-    <!-- // if there's no data for drive up hours -->
-      Drive-Up Hours: N/A
-    {{/if}}
-      <br>
+    <p>
+      {{#if driveUpHrs.length}}
+        Drive-Up Hours:
+        {{#each driveUpHrs}}
+          <!--  // outputs each drive up hour by day -->
+          {{this}},
+        {{/each}}
+      {{else}}
+      <!-- // if there's no data for drive up hours -->
+        Drive-Up Hours: N/A
+      {{/if}}
+    </p>
 
     <!-- //checks if phone number data is available, then outputs -->
-    {{#if phone}}
-      Phone: {{phone}}
-    {{/if}}
-    <br>
-
+    <p>
+      {{#if phone}}
+        Phone: {{phone}}
+      {{/if}}
     </p>
+
   </script>
   <!-- div to display chase branch/atm details -->
   <!-- manipulating DOM elements instead of creating a new route page for each location -->

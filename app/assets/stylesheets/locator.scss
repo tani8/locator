@@ -1,3 +1,16 @@
 // Place all the styles related to the locator controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*centering header and find bar*/
+h1, .find{
+/*aligning content for visual ease*/
+  text-align: center
+}
+/*styling for details page*/
+#location-details{
+  border: 2px solid black;
+  text-align: center;
+  /*used so the border doesn't initially display on map page*/
+  display: none;
+}
