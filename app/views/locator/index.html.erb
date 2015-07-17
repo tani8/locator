@@ -1,0 +1,21 @@
+<h1> JP Morgan Chase ATM/Branch Locator </h2>
+
+  <!-- form used to take user input in the form of an address to obtain lng/lat -->
+<div class = "find">
+  Find a Location:
+  <form>
+    <input type="text" id="search" name="address">
+    <input type="submit" value="Search">
+  </form>
+  <br>
+  <br>
+</div>
+
+<div id="map-canvas"></div>
+
+    <%# form_for @address do |f| %>
+      <%# f.text_field :address %>
+      <!-- <br> -->
+      <%# f.submit 'Find' %>
+    <%# end %>
+
