@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+How To Run:
 
-Things you may want to cover:
+After cloning the repository, use these commands to install dependencies and boot up the server:
+  bundle install
+  bin/rails server
 
-* Ruby version
+User options:
 
-* System dependencies
+  current location:
+    By default, the application takes your current location and displays markers for the nearby Chase ATM/Branch locations. Clicking on a marker will generate the details of the location with pertinent information.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  user input location:
+    Use the 'Find' input bar to type in an address around which you'd like to find the nearby Chase ATM/Branch locations. Clicking on any of these markers will have the same functionality of generating details for that specific location with pertinent information.
