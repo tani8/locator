@@ -58,6 +58,7 @@ function initialize(location) {
 function chaseMarkers(lati, longi, map){
 
   // var url = "https://m.chase.com/PSRWeb/location/list.action?lat=" + latit + "&lng=" + longi;
+  var dataHash;
 
   var response = $.ajax({
     url: '/chaseparty',
@@ -72,6 +73,7 @@ function chaseMarkers(lati, longi, map){
     var markerCoords = {};
     var name = new google.maps.InfoWindow();
     var marker, i;
+    dataHash = data;
 
     for(i = 0; i < data["locations"].length; i++){
       lati = data["locations"][i]["lat"];
@@ -81,21 +83,19 @@ function chaseMarkers(lati, longi, map){
       marker = new google.maps.Marker({
         position: responseCoord,
         map: map,
-        title: data["locations"][i]["address"],
+        address: data["locations"][i]["address"],
+        markerData: data["locations"][i],
       });
-      google.maps.event.addListener(marker, "click", function(e, data){
+      google.maps.event.addListener(marker, "click", function(e){
         // navigate to details page
-        // event.target.name
-        // name.open(marker.get('map'), marker);
-        name.setContent(marker.title);
-        name.open(marker.get('map'), marker);
-        chaseDetails(e, data);
-        // debugger
+        name.setContent(this.address);
+        name.open(this.map, this);
+        // console.log(data, i);
+        chaseDetails(e, this.markerData);
       });
-    // debugger
+
     }
-    console.log(data);
-    debugger;
+
 
   });
 
@@ -105,10 +105,13 @@ function chaseMarkers(lati, longi, map){
   });
 }
 
-var chaseDetails = function(e, data){
-  e.target.title;
-  $('#canvas').remove();
-  $('.find').append($("h2"))
-    // data["locations"][i]["address"]
+function chaseDetails(e, markerDeets){
+  // console.log("chaseDetails");
+  console.log(e);
+  console.log(markerDeets);
   debugger
+  // $('#map-canvas').hide();
+  // $('.find').append($("h2"))
+  //   // data["locations"][i]["address"]
+  // debugger
 };
