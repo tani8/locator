@@ -2,7 +2,7 @@ $(document).on('page:change', function(){
   // function created to get the users current location as coordinates
   // then calls initialize to set up a map with associated markers
   currentLocation();
-
+  // executes input address method on submit click event
   $('form').on('submit', inputAddress);
 
 });
@@ -47,8 +47,11 @@ function initialize(location) {
 
   // sets first marker as current location
   var marker = new google.maps.Marker({
+    // sets position of first marker to current latitude and longitude
     position: mylatLong,
     map: map,
+    // adds bounce/drop effect when markers are created
+    animation: google.maps.Animation.DROP,
     title: "First location"
   });
 
@@ -56,19 +59,19 @@ function initialize(location) {
 
 function inputAddress(){
   event.preventDefault();
-
+  // making ajax call to get lat and lng data from form
   var response = $.ajax({
     url: '/',
     type: 'get',
+    // send form address data as a string to params in locator controller
     data: $(this).serialize(),
     dataType: 'json',
   });
-
+  // successful response sends data hash to initialize function to set markers and map
   response.done(function(data){
-    console.log(data)
     initialize(data);
   });
-
+  // failed response informs console
   response.fail(function(data){
     console.log("you don't belong here");
   });
@@ -103,6 +106,7 @@ function chaseMarkers(lati, longi, map){
       marker = new google.maps.Marker({
         position: responseCoord,
         map: map,
+        animation: google.maps.Animation.DROP,
         // address attribute used for info window on click
         address: data["locations"][i]["address"],
         // passing each marker specific data
@@ -124,7 +128,7 @@ function chaseMarkers(lati, longi, map){
   // if response results in a failure, console log notifies
   response.fail(function(data){
     // console.log(data);
-    console.log("whoa there");
+    console.log("whoa there, failure");
   });
 }
 
